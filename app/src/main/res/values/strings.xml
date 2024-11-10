@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">filMe-in</string>
+    <string name="app_name">TMDB Trending Movies</string>
+    <string name="enter_api_key">Enter your API Key</string>
+    <string name="save">Save</string>
 </resources>

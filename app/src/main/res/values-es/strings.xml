@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Películas en Tendencia TMDB</string>
+    <string name="enter_api_key">Ingrese su API Key</string>
+    <string name="save">Guardar</string>
+</resources>

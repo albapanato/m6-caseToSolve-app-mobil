@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "filMe-in"
+rootProject.name = "TrendingMoviesApp"
 include(":app")
- 

@@ -2,18 +2,20 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 
+
 ///configuracion pluggin de serialization:
     alias(libs.plugins.kotlinxSerialitation)
 }
 
+
 android {
-    namespace = "com.alba.filme_in"
-    compileSdk = 34
+    namespace = "com.example.trendingmoviesapp"
+    compileSdk = 35 //Cambio de 34 a 35, creaba conflicto
 
     defaultConfig {
-        applicationId = "com.alba.filme_in"
-        minSdk = 21
-        targetSdk = 34
+        applicationId = "com.example.trendingmoviesapp"
+        minSdk = 24
+        targetSdk = 35 //Cambio de 34 a 35, creaba conflicto
         versionCode = 1
         versionName = "1.0"
 
@@ -62,7 +64,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.contentpager)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,15 +72,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-///configuracion añadida para poder hacer posible la navegacion y la serealizacion
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(libs.coil.compose)
     implementation(libs.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.serialization) // para el convertidor de serialización
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging.interceptor)
+    implementation("androidx.compose.material:material:1.5.0") // para que funcione varias propiedades de Jetpack Compose
+    implementation ("io.coil-kt:coil-compose:2.3.0")
+
+
+
+
 }
