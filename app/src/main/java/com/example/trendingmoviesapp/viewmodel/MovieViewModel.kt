@@ -74,19 +74,19 @@ class AppViewModel : ViewModel() {
     }
 
     // Lista de personas populares
-    val popularPersons = mutableListOf<Movie>()
+    private val popularPersons = mutableListOf<Movie>()
 
     // Función para obtener personas populares
-    fun fetchPopularPersons() {
+    fun fetchPopularPersons(apiKey: String) {
         viewModelScope.launch {
             try {
-                val response = apiService.getPopularPersons() // Asegúrate de que este método esté definido correctamente
+                val response = apiService.getPopularPersons(apiKey) // Asegúrate de pasar el apiKey
                 if (response.isSuccessful) {
                     popularPersons.clear()
-                    // Asegúrate de que estás accediendo a la lista de películas correctamente
-                    val movieResponse = response.body()
-                    if (movieResponse != null) {
-                        popularPersons.addAll(movieResponse.results) // Cambia 'movies' a 'results'
+                    // Asegúrate de que estás accediendo a la lista de personas correctamente
+                    val personResponse = response.body()
+                    if (personResponse != null) {
+                        popularPersons.addAll(personResponse.results) // Cambia 'movies' a 'results'
                     }
                     Log.d("AppViewModel", "Fetched ${popularPersons.size} persons.")
                 } else {

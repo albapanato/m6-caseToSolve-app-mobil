@@ -2,4 +2,5 @@
     <string name="app_name">TMDB Trending Movies</string>
     <string name="enter_api_key">Enter your API Key</string>
     <string name="save">Save</string>
+    <string name="search_for_movies">Search for movies</string>
 </resources>

@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -74,7 +75,7 @@ fun ApiKeyScreen(onApiKeySaved: (String) -> Unit) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background) // Fondo según el tema elegido
+                .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
         ) {
             // Logo en la parte superior, centrado horizontalmente
@@ -83,46 +84,46 @@ fun ApiKeyScreen(onApiKeySaved: (String) -> Unit) {
                     .align(Alignment.TopCenter)
                     .padding(16.dp)
             ) {
-                Logo() // Llamada a tu función de logo
+                Logo()
             }
 
             // Contenido principal
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 80.dp), // Ajuste de espacio debajo del logo
+                    .padding(top = 80.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
                 Row(
                     modifier = Modifier.padding(top = 15.dp)
                 ) {
+                    // Botón para tema claro
                     Button(
                         onClick = {
-                            // Cambiar a tema claro y guardar en preferencias
                             appViewModel.setDarkTheme(false)
                             sharedPreferences.edit()
                                 .putBoolean(Preferences.APP_IN_DARK_THEME, false).apply()
-                        }, modifier = Modifier
-                            .padding(8.dp), // Espaciado adicional
+                        },
+                        modifier = Modifier.padding(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF0BB5E2), // Color de fondo del botón
-                            contentColor = Color.White // Color del contenido (el icono)
+                            containerColor = Color(0xFF0BB5E2),
+                            contentColor = Color.White
                         )
                     ) {
                         Icon(Icons.Filled.LightMode, null)
                     }
+                    // Botón para tema oscuro
                     Button(
                         onClick = {
-                            // Cambiar a tema oscuro y guardar en preferencias
                             appViewModel.setDarkTheme(true)
                             sharedPreferences.edit()
                                 .putBoolean(Preferences.APP_IN_DARK_THEME, true).apply()
                         },
-                        modifier = Modifier.padding(8.dp), // Espaciado adicional
+                        modifier = Modifier.padding(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF0BB5E2), // Color de fondo del botón
-                            contentColor = Color.White // Color del contenido (el icono)
+                            containerColor = Color(0xFF0BB5E2),
+                            contentColor = Color.White
                         )
                     ) {
                         Icon(Icons.Filled.DarkMode, null)
@@ -136,11 +137,12 @@ fun ApiKeyScreen(onApiKeySaved: (String) -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+                    // Usar el recurso de strings para el título
                     Text(
-                        text = "API Key Screen",
+                        text = stringResource(id = R.string.app_name), // Cambiado aquí
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onBackground // Color adaptativo según el tema
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -148,26 +150,25 @@ fun ApiKeyScreen(onApiKeySaved: (String) -> Unit) {
                     OutlinedTextField(
                         value = apiKey,
                         onValueChange = { apiKey = it },
-                        label = { Text("Enter API Key") }
+                        label = { Text(stringResource(id = R.string.enter_api_key)) } // Cambiado aquí
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = {
-                            // Guardar la API Key
                             onApiKeySaved(apiKey)
-                            appViewModel.setApiKey(apiKey) // Actualizar el ViewModel con la nueva API Key
+                            appViewModel.setApiKey(apiKey)
                             sharedPreferences.edit()
-                                .putString(Preferences.API_KEY, apiKey).apply() // Guardar API Key en preferencias
+                                .putString(Preferences.API_KEY, apiKey).apply()
                         },
-                        modifier = Modifier
-                            .padding(8.dp), // Espaciado adicional
+                        modifier = Modifier.padding(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF0BB5E2), // Color de fondo del botón
-                            contentColor = Color.White // Color del contenido (texto)
+                            containerColor = Color(0xFF0BB5E2),
+                            contentColor = Color.White
                         )
                     ) {
-                        Text("Guardar")
+                        // Usar el recurso de strings para el texto del botón
+                        Text(stringResource(id = R.string.save)) // Cambiado aquí
                     }
                 }
             }
